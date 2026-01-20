@@ -4,6 +4,6 @@ This is a sample repository used by the [coding-template](https://github.com/hud
 
 ## Branches
 
-- `sample_bug_fix_baseline` - Web server with a bug
-- `sample_bug_fix_test` - Baseline + test that exposes the bug
-- `sample_bug_fix_golden` - Baseline + the fix
+- `server_fix_baseline` - Web server with a bug
+- `server_fix_test` - Baseline + test that exposes the bug
+- `server_fix_golden` - Baseline + the fix
