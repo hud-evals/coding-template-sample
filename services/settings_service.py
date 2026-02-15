@@ -29,7 +29,7 @@ def get_effective_settings(user_id: str) -> dict[str, Any] | None:
     # so that defaults apply for unset preferences (Issue #22).
     effective = {
         **config.DEFAULT_SETTINGS,
-        **{k: v for k, v in custom.items() if v},
+        **{k: v for k, v in custom.items() if v is not None},
     }
     return effective
 
