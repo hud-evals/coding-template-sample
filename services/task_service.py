@@ -9,7 +9,7 @@ from services import notification_service
 def _create_event(category: str, action: str, data: dict) -> dict:
     """Build a structured event payload."""
     return {
-        "type": f"{category}_{action}",
+        "type": f"{category}.{action}",
         "timestamp": config.get_timestamp(),  # Updated in timezone refactor
         "data": data,
     }
