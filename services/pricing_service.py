@@ -32,16 +32,17 @@ def calculate_order_total(items: list[dict], discount_code: str | None = None) -
     # 1. Line-item subtotal
     subtotal = sum(item["price"] * item["quantity"] for item in items)
 
-    # 2. Calculate tax on order
-    tax = round_cents(subtotal * config.TAX_RATE)
-
-    # 3. Apply discount (if any)
+    # 2. Apply discount (if any)
     discount_amount = 0.0
     if discount_code:
         discount_amount = apply_discount(subtotal, discount_code)
 
-    # 4. Final total: subtotal + tax - discount
-    total = round_cents(subtotal + tax - discount_amount)
+    # 3. Calculate tax on discounted amount
+    taxable = subtotal - discount_amount
+    tax = round_cents(taxable * config.TAX_RATE)
+
+    # 4. Final total
+    total = round_cents(taxable + tax)
 
     return {
         "subtotal": round_cents(subtotal),

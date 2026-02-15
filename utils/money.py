@@ -13,8 +13,7 @@ def round_cents(amount: float) -> float:
     Uses integer truncation to avoid floating-point drift that can
     accumulate across many operations.
     """
-    # Truncate to cents (avoid floating point drift)
-    return int(amount * 100) / 100
+    return round(amount * 100) / 100
 
 
 def format_price(amount: float) -> str:
