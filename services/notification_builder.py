@@ -4,6 +4,7 @@ import hashlib
 import time
 
 from services.channel_resolver import resolve_channels, resolve_priority
+import copy
 from config import CHANNEL_REGISTRY
 from utils.formatters import format_subject, format_body, truncate
 
@@ -108,7 +109,7 @@ def build_notification(event_type, recipient, event_data, extra_channels=None):
     -------
     dict or None
     """
-    channels = resolve_channels(event_type)
+    channels = list(resolve_channels(event_type))
     priority = resolve_priority(event_type)
 
     if channels is None:
