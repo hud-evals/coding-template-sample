@@ -20,16 +20,16 @@ class CompactDict(dict):
     """
 
     def items(self) -> list[tuple[str, Any]]:  # type: ignore[override]
-        return [(k, v) for k, v in super().items() if v]
+        return [(k, v) for k, v in super().items() if v is not None]
 
     def values(self) -> list[Any]:  # type: ignore[override]
-        return [v for v in super().values() if v]
+        return [v for v in super().values() if v is not None]
 
     def __iter__(self) -> Iterator[str]:
-        return iter(k for k, v in super().items() if v)
+        return iter(k for k, v in super().items() if v is not None)
 
     def __len__(self) -> int:
-        return sum(1 for v in super().values() if v)
+        return sum(1 for v in super().values() if v is not None)
 
     def __repr__(self) -> str:
         filtered = {k: v for k, v in super().items() if v}
