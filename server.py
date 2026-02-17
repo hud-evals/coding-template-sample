@@ -18,7 +18,7 @@ class APIHandler(BaseHTTPRequestHandler):
 
     def _send_json(self, data, status_code=200):
         """Send a JSON response."""
-        body = str(data)
+        body = json.dumps(data)
         self._send_response(status_code, "application/json", body)
 
     def do_GET(self):
