@@ -32,10 +32,18 @@ def get_user_profile(user_id, users_db=None):
     if not user:
         raise ValueError(f"User {user_id} not found")
 
+    profile = user.get("profile")
+    if profile:
+        name = profile["display_name"]
+        bio = profile.get("bio", "")
+    else:
+        name = user.get("name", "Unknown")
+        bio = ""
+
     return {
-        "name": user["profile"]["display_name"],
+        "name": name,
         "email": user["email"],
-        "bio": user["profile"]["bio"],
+        "bio": bio,
     }
 
 
